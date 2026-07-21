@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import './portfolio.css'
+import Hero from '@/components/Hero'
+import Profile from '@/components/Profile'
 
 export default async function Page() {
   const cookieStore = await cookies()
@@ -12,11 +13,15 @@ export default async function Page() {
     .order('created_at', { ascending: false })
 
   return (
-    <main className="container">
-      <header className="header">
-        <h1>Selected Works</h1>
-        <p>A collection of my recent projects and experiments.</p>
-      </header>
+    <>
+      <Hero />
+      <Profile />
+      
+      <main className="bg-[#F3F3F3] min-h-screen px-[50px] py-16 font-['segoe_ui']">
+        <div className="max-w-7xl mx-auto">
+        <h1 className="text-[#5170FF] text-[60px] font-bold text-center mb-4"> Projects </h1> 
+        <p className="text-gray-600 text-[20px] text-center mb-16">A collection of my recent projects and experiments.</p>
+        </div>
       
       {error && (
         <div style={{ color: '#ef4444', padding: '1rem', border: '1px solid #ef4444', borderRadius: '8px', marginBottom: '2rem' }}>
@@ -31,15 +36,15 @@ export default async function Page() {
           <p>Check back later when I've added some work.</p>
         </div>
       ) : (
-        <div className="grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects?.map((project: any) => (
-            <article key={project.id} className="card">
-              <div className="card-image-container">
+            <article key={project.id} className="bg-white border-2 border-[#5170FF] rounded-2xl overflow-hidden shadow-sm flex flex-col">
+              <div className="w-full h-48 relative border-b-2 border-gray-100">
                 {project.thumbnail_url ? (
                   <img 
                     src={project.thumbnail_url} 
                     alt={project.title} 
-                    className="card-image"
+                    className="w-full h-full object-cover" 
                   />
                 ) : (
                   <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#52525b' }}>
@@ -47,12 +52,12 @@ export default async function Page() {
                   </div>
                 )}
               </div>
-              <div className="card-content">
-                <h2 className="card-title">{project.title}</h2>
-                <p className="card-description">{project.short_description}</p>
+              <div className="p-6 flex flex-col flex-grow">
+                <h2 className="text-[#5170FF] text-2xl font-bold mb-2">{project.title}</h2>
+                <p className="text-gray-700 text-sm leading-relaxed flex-grow">{project.short_description}</p>
                 
                 {(project.github_url || project.demo_url) && (
-                  <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                  <div style={{ color: '#5170FF', display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
                     {project.github_url && (
                       <a href={project.github_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
                         GitHub ↗
@@ -71,5 +76,6 @@ export default async function Page() {
         </div>
       )}
     </main>
+    </>
   )
 }

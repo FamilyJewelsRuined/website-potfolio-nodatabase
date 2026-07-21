@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import akbarImage from '../assets/akbar.png';
+import akbarImage from '../app/assets/akbar.png';
 import Link from "next/link";
 
 interface GreetingProps {

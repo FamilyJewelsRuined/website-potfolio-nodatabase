@@ -66,13 +66,14 @@ const Greeting: React.FC<GreetingProps> = ({ initialName = 'World' }) => {
             <p className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded">GPA 3.73 / 4.00</p>
           </div>
 
-          {/*edukasi kursus*/}
+          {/*edukasi kursus
           <div>
-            <h2 className="text-[#5170FF] text-2xl font-bold mb-4 border-b-2 border-gray-100 pb-2 mt-4">Learning Path</h2>
+            <h2 className="text-[#5170FF] text-2xl font-bold mb-4 border-b-2 border-gray-100 pb-2 mt-4">
+              Sertification</h2>
             <h3 className="font-bold text-lg text-gray-800 mb-1">Fullstack</h3>
             <p className="text-gray-600 font-medium">DBS Coding Camps 2025</p>
           </div>
-
+*/}
         </div>
 
       </div>
