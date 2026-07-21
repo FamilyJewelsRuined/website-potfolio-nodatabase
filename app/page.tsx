@@ -1,7 +1,10 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Hero from '@/components/Hero'
+import Stack from '@/components/Stack'
 import Profile from '@/components/Profile'
+import Experience from "@/components/Experience";
+//import Contact from "@/components/Contact";
 
 export default async function Page() {
   const cookieStore = await cookies()
@@ -16,6 +19,9 @@ export default async function Page() {
     <>
       <Hero />
       <Profile />
+      <Stack />
+      <Experience />
+      {/* <Contact /> */}
       
       <main className="bg-[#F3F3F3] min-h-screen px-[50px] py-16 font-['segoe_ui']">
         <div className="max-w-7xl mx-auto">
@@ -38,7 +44,7 @@ export default async function Page() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects?.map((project: any) => (
-            <article key={project.id} className="bg-white border-2 border-[#5170FF] rounded-2xl overflow-hidden shadow-sm flex flex-col">
+            <article key={project.id} className="bg-white border-2 border-blue-100 rounded-2xl overflow-hidden shadow-sm flex flex-col">
               <div className="w-full h-48 relative border-b-2 border-gray-100">
                 {project.thumbnail_url ? (
                   <img 
