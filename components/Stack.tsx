@@ -19,6 +19,7 @@ import {
   SiDocker,
   SiVercel,
 } from "react-icons/si";
+import ScrollReveal from "./ScrollReveal";
 
 interface TechCategory {
   title: string;
@@ -79,7 +80,7 @@ export default function Stack() {
 
       {/* Heading */}
 
-      <div className="relative z-10 mx-auto mb-16 max-w-6xl text-center">
+      <ScrollReveal preset="fadeUp" className="relative z-10 mx-auto mb-16 max-w-6xl text-center">
 
         <h2 className="text-5xl font-bold text-[#5170FF]">
           Tech Stack
@@ -89,46 +90,51 @@ export default function Stack() {
           Technologies I use to build scalable web applications.
         </p>
 
-      </div>
+      </ScrollReveal>
 
       {/* Cards */}
 
       <div className="relative z-10 mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
 
-        {stack.map((category) => (
+        {stack.map((category, i) => (
 
-          <div
+          <ScrollReveal
             key={category.title}
-            className="rounded-3xl border border-blue-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            preset="scaleUp"
+            delay={i * 0.1}
           >
+            <div
+              className="rounded-3xl border border-blue-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
 
-            <h3 className="mb-6 text-2xl font-bold text-[#5170FF]">
-              {category.title}
-            </h3>
+              <h3 className="mb-6 text-2xl font-bold text-[#5170FF]">
+                {category.title}
+              </h3>
 
-            <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3">
 
-              {category.items.map((tech) => (
+                {category.items.map((tech) => (
 
-                <div
-                  key={tech.name}
-                  className="flex items-center gap-2 rounded-full border border-blue-200 bg-[#F8FAFF] px-4 py-2 transition hover:border-[#5170FF] hover:bg-blue-50"
-                >
-                  <span className="text-lg text-[#5170FF]">
-                    {tech.icon}
-                  </span>
+                  <div
+                    key={tech.name}
+                    className="flex items-center gap-2 rounded-full border border-blue-200 bg-[#F8FAFF] px-4 py-2 transition hover:border-[#5170FF] hover:bg-blue-50"
+                  >
+                    <span className="text-lg text-[#5170FF]">
+                      {tech.icon}
+                    </span>
 
-                  <span className="font-medium text-gray-700">
-                    {tech.name}
-                  </span>
+                    <span className="font-medium text-gray-700">
+                      {tech.name}
+                    </span>
 
-                </div>
+                  </div>
 
-              ))}
+                ))}
+
+              </div>
 
             </div>
-
-          </div>
+          </ScrollReveal>
 
         ))}
 

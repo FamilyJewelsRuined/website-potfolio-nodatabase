@@ -8,6 +8,7 @@ import {
   SiFlutter,
   SiTailwindcss,
 } from "react-icons/si";
+import ScrollReveal from "./ScrollReveal";
 
 interface Experience {
   title: string;
@@ -70,7 +71,7 @@ export default function Experience() {
 
       {/* Heading */}
 
-      <div className="relative z-10 mx-auto mb-16 max-w-6xl text-center">
+      <ScrollReveal preset="fadeUp" className="relative z-10 mx-auto mb-16 max-w-6xl text-center">
 
         <h2 className="text-5xl font-bold text-[#5170FF]">
           Experience
@@ -80,7 +81,7 @@ export default function Experience() {
           Building software for clients and teams.
         </p>
 
-      </div>
+      </ScrollReveal>
 
       {/* Timeline */}
 
@@ -92,10 +93,12 @@ export default function Experience() {
 
         <div className="space-y-12">
 
-          {experiences.map((job) => (
+          {experiences.map((job, i) => (
 
-            <div
+            <ScrollReveal
               key={job.company}
+              preset="slideLeft"
+              delay={i * 0.15}
               className="relative pl-20"
             >
 
@@ -183,7 +186,7 @@ export default function Experience() {
 
               </div>
 
-            </div>
+            </ScrollReveal>
 
           ))}
 
