@@ -6,6 +6,7 @@ import Profile from '@/components/Profile'
 import Experience from "@/components/Experience";
 import ProjectGrid from "@/components/ProjectGrid";
 import ScrollReveal from "@/components/ScrollReveal";
+import Footer from "@/components/Footer";
 //import Contact from "@/components/Contact";
 
 export default async function Page() {
@@ -51,6 +52,7 @@ export default async function Page() {
         <ProjectGrid projects={projects ?? []} />
       )}
     </main>
+    <Footer />
     </>
   )
 }

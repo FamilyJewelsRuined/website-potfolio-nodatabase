@@ -5,6 +5,7 @@ import Image from 'next/image';
 import akbarImage from '../app/assets/akbar.png';
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import SocialLinks from "./SocialLinks";
 
 interface GreetingProps {
   initialName?: string;
@@ -87,6 +88,10 @@ const Greeting: React.FC<GreetingProps> = ({ initialName = 'World' }) => {
               About Me
             </Link>
           </div>
+        </ScrollReveal>
+
+        <ScrollReveal preset="fadeUp" delay={0.6}>
+          <SocialLinks variant="dark" className="mt-6" />
         </ScrollReveal>
       </div>
 
