@@ -76,14 +76,19 @@ const Greeting: React.FC<GreetingProps> = ({ initialName = 'World' }) => {
               <p className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded">GPA 3.73 / 4.00</p>
             </div>
 
-            {/*edukasi kursus
-            <div>
-              <h2 className="text-[#5170FF] text-2xl font-bold mb-4 border-b-2 border-gray-100 pb-2 mt-4">
-                Sertification</h2>
-              <h3 className="font-bold text-lg text-gray-800 mb-1">Fullstack</h3>
-              <p className="text-gray-600 font-medium">DBS Coding Camps 2025</p>
+            {/*edukasi kursus*/}
+            <div className="mt-4">
+              <h2 className="text-[#5170FF] text-2xl font-bold mb-4 border-b-2 border-gray-100 pb-2">
+                Sertification
+              </h2>
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="font-bold text-lg text-gray-800">Introduction to Cybersecurity</h3>
+              </div>
+              <p className="text-gray-600 font-medium">Cisco Networking Academy</p>
+              <Link href="/certificates/cisco-cybersecurity.pdf" target="_blank" className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded inline-block hover:bg-blue-100 transition-colors">
+                View Certificate
+              </Link>
             </div>
-*/}
           </div>
         </ScrollReveal>
 
