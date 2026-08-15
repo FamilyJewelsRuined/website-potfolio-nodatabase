@@ -1,100 +1,106 @@
 "use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import akbarImage from '../assets/akbar.png';
-import Link from "next/link";
+import React, { useRef, useState, useEffect } from 'react';
 import ScrollReveal from "./ScrollReveal";
 
-interface GreetingProps {
-  initialName?: string;
+export interface Certificate {
+  id: string | number;
+  title: string;
+  description: string;
+  image_url?: string;
 }
 
-const Greeting: React.FC<GreetingProps> = ({ initialName = 'World' }) => {
-  const [name, setName] = useState<string>(initialName);
+const defaultCertificates: Certificate[] = [
+  { id: 1, title: "Certificate 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+  { id: 2, title: "Certificate 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+  { id: 3, title: "Certificate 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(`Hello, ${name}!`);
+export interface CertificationsProps {
+  certificates?: Certificate[];
+}
+
+export default function Certifications({ certificates = defaultCertificates }: CertificationsProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      const maxScrollLeft = scrollWidth - clientWidth;
+      setScrollProgress(maxScrollLeft > 0 ? scrollLeft / maxScrollLeft : 0);
+    }
   };
 
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener("resize", handleScroll);
+    return () => window.removeEventListener("resize", handleScroll);
+  }, []);
+
   return (
-    <div style={{ backgroundColor: "#F3F3F3", minHeight: "100vh" }}>
-
-      <div className="flex flex-col md:flex-row gap-12 px-[50px] py-16 max-w-7xl mx-auto">
+    <div id="certifications" className="bg-[#0B0E1B] text-white min-h-[70vh] px-8 md:px-16 lg:px-24 py-20 font-sans flex items-center border-t border-[#1E2545]">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
         
-        {/* Left Column: About Me */}
-        <div style={{ color: "#5170FF", fontFamily: "segoe ui", textAlign: "left" }} className="flex-1">
+        {/* Left Column */}
+        <div className="flex-1 max-w-lg lg:max-w-md w-full">
           <ScrollReveal preset="fadeUp">
-            <h1 style={{ fontSize: "60px", fontWeight: "bold", marginBottom: "1rem" }}>About Me</h1>
+            <h2 className="text-white text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight mb-6">
+              Certifications & <span className="text-[#00F0FF]">Badges</span>
+            </h2>
           </ScrollReveal>
           <ScrollReveal preset="fadeUp" delay={0.1}>
-            <p style={{  color: "#131313ff", fontSize: "20px", textAlign: "justify", lineHeight: "1.6" }}>
-              I hear the drums echoin' tonight But she hears only whispers of some quiet conversation. She's comin' in, 12:30 flight The moonlit wings reflect the stars that guide me towards salvation. I stopped an old man along the way Hopin' to find some old forgotten words or ancient melodies. He turned to me as if to say "Hurry, boy, it's waitin' there for u"
+            <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed">
+              Verified security credentials, SOC analyst certifications, and technical badges demonstrating hands-on expertise in threat detection, incident response, and secure software development.
             </p>
-          </ScrollReveal>
-
-          <hr className="my-8 border-t-2 border-[#5170FF]/20" />
-          
-          <ScrollReveal preset="fadeUp">
-            <h2 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "1rem" }}>Hobbies</h2>
-          </ScrollReveal>
-          <ScrollReveal preset="fadeUp" delay={0.1}>
-            <div className="flex flex-wrap gap-3">
-              <p style={{  color: "#131313ff", fontSize: "20px", textAlign: "justify", lineHeight: "1.6" }}>
-              Dedicated to minimizing total cost of ownership and maximizing budget efficiency. Driven to eliminate operational friction through continuous process improvement. Early adopter of emerging tech stacks to maintain competitive advantage. Focused on automating routine tasks to accelerate delivery and reduce manual effort. Passionate about deep-diving into complex, niche domains to uncover unique solutions.
-            </p>
-            </div>
           </ScrollReveal>
         </div>
 
-        {/* Right Column: Education Box */}
-        <ScrollReveal preset="slideRight" delay={0.2} className="flex-1 md:max-w-md">
-          <div className="border-2 border-[#5170FF] rounded-2xl p-8 shadow-sm flex flex-col gap-6 font-sans h-full">
-            
-            <div>
-              <h2 className="text-[#5170FF] text-2xl font-bold mb-2 border-b-2 border-gray-100 pb-2">Education</h2>
-              
-      {/*edukasi SMK*/}
-<div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg text-gray-800">Multimedia</h3>
-                <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap ml-4">
-                  2020 - 2023
-                </span>
-              </div>
-              <p className="text-gray-600 font-medium">SMK Negeri 2 Banjarmasin</p>
-              <p className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded mb-2">
-                  Overall Grade : 85 / 100</p>
-              {/*edukasi kuliah*/}
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg text-gray-800">Informatics Engineering</h3>
-                <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap ml-4">
-                  2023 - 2026
-                </span>
-              </div>
-              <p className="text-gray-600 font-medium">Politeknik Negeri Banjarmasin</p>
-              <p className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded">GPA 3.73 / 4.00</p>
-            </div>
-
-            {/*edukasi kursus*/}
-            <div className="mt-4">
-              <h2 className="text-[#5170FF] text-2xl font-bold mb-4 border-b-2 border-gray-100 pb-2">
-                Sertification
-              </h2>
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg text-gray-800">Introduction to Cybersecurity</h3>
-              </div>
-              <p className="text-gray-600 font-medium">Cisco Networking Academy</p>
-              <Link href="/certificates/cisco-cybersecurity.pdf" target="_blank" className="text-blue-500 font-semibold mt-2 text-sm bg-blue-50 w-fit px-2 py-1 rounded inline-block hover:bg-blue-100 transition-colors">
-                View Certificate
-              </Link>
-            </div>
+        {/* Right Column: Scrollable Cards */}
+        <div className="flex-1 w-full relative flex flex-col">
+          <style>{`
+            .custom-scrollbar::-webkit-scrollbar {
+              height: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+              background: #0B0E1B;
+              border-radius: 3px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+              background: #00F0FF;
+              border-radius: 3px;
+            }
+          `}</style>
+          <div 
+            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory custom-scrollbar"
+          >
+            {certificates.map((cert, index) => (
+              <ScrollReveal 
+                key={cert.id} 
+                preset="fadeUp" 
+                delay={0.1 + index * 0.1}
+                className="w-[280px] md:w-[340px] snap-center flex flex-col border border-[#1E2545] bg-[#121629] rounded-2xl overflow-hidden shrink-0 hover:border-[#00F0FF]/60 hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all duration-300"
+              >
+                {/* Image Placeholder */}
+                <div className="w-full aspect-video relative border-b border-[#1E2545] bg-[#0B0E1B] overflow-hidden">
+                  {cert.image_url ? (
+                    <img src={cert.image_url} alt={cert.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <img src="/tempimage.png" alt="Placeholder" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                  )}
+                </div>
+                
+                <div className="p-5">
+                  <h3 className="text-[#00F0FF] font-bold text-lg md:text-xl mb-2">{cert.title}</h3>
+                  <p className="text-[#A3B3D1] text-[14px] leading-relaxed">
+                    {cert.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
-        </ScrollReveal>
-
+        </div>
       </div>
     </div>
   );
-};
-
-export default Greeting;
+}

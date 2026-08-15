@@ -3,11 +3,10 @@ import { cookies } from 'next/headers'
 import Hero from '@/components/Hero'
 import Stack from '@/components/Stack'
 import Profile from '@/components/Profile'
-import Experience from "@/components/Experience";
 import ProjectGrid from "@/components/ProjectGrid";
 import ScrollReveal from "@/components/ScrollReveal";
 import Footer from "@/components/Footer";
-//import Contact from "@/components/Contact";
+import Contact from "@/components/Contact";
 
 export default async function Page() {
   const cookieStore = await cookies()
@@ -18,21 +17,27 @@ export default async function Page() {
     .select()
     .order('created_at', { ascending: false })
 
+  const { data: skills, error: skillsError } = await supabase
+    .from('skills')
+    .select()
+    .order('created_at', { ascending: false })
+
   return (
     <>
       <Hero />
-      <Profile />
-      <Stack />
-      <Experience />
-      {/* <Contact /> */}
+
       
-      <main className="bg-[#F3F3F3] min-h-screen px-[50px] py-16 font-['segoe_ui']">
-        <div className="max-w-7xl mx-auto">
+      <main className="bg-[#0B0E1B] text-white min-h-screen px-8 md:px-16 lg:px-24 py-16 font-sans border-t border-[#1E2545]">
+        <div className="max-w-7xl mx-auto flex justify-between items-end mb-10 border-b border-[#1E2545] pb-4">
           <ScrollReveal preset="fadeUp">
-            <h1 className="text-[#5170FF] text-[60px] font-bold text-center mb-4"> Projects </h1>
+            <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
+              Featured <span className="text-[#00F0FF]">Projects</span>
+            </h2>
           </ScrollReveal>
           <ScrollReveal preset="fadeUp" delay={0.1}>
-            <p className="text-gray-600 text-[20px] text-center mb-16">A collection of my recent projects and experiments.</p>
+            <a href="#" className="text-[#00F0FF] hover:text-cyan-300 text-sm md:text-[15px] font-bold transition-colors pb-1 flex items-center gap-1">
+              See More Projects →
+            </a>
           </ScrollReveal>
         </div>
       
@@ -52,6 +57,9 @@ export default async function Page() {
         <ProjectGrid projects={projects ?? []} />
       )}
     </main>
+    <Profile />
+    <Stack skills={skills?.length ? skills : undefined} />
+    <Contact />
     <Footer />
     </>
   )

@@ -1,54 +1,73 @@
 "use client";
 
-import { HiOutlineMail } from "react-icons/hi";
-import { FaLinkedinIn } from "react-icons/fa";
+import ScrollReveal from "./ScrollReveal";
+import { FaLinkedinIn, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
   return (
-    <section className="relative overflow-hidden bg-[#F3F3F3] py-28">
+    <section id="contact" className="font-sans flex flex-col md:flex-row w-full min-h-[550px] bg-[#0B0E1B] border-t border-[#1E2545] text-white p-8 md:p-16 gap-8 max-w-7xl mx-auto">
 
-      {/* Background Decorations */}
+      {/* Left Column (Dark Navy Panel) */}
+      <div className="flex-1 bg-[#121629] border border-[#1E2545] rounded-2xl flex flex-col justify-center px-8 md:px-14 py-14 relative shadow-xl hover:border-[#00F0FF]/30 transition-all">
+        <ScrollReveal preset="fadeUp">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 relative z-10 tracking-tight">
+            Contact <span className="text-[#00F0FF]">Me</span>
+          </h2>
 
-      <div className="absolute left-16 top-20 h-48 w-48 rounded-full border border-blue-100 opacity-30"></div>
+          <div className="max-w-sm mb-10">
+            <p className="text-[#A3B3D1] font-medium text-[15px] mb-4 leading-relaxed">
+              I read all incoming messages. Feel free to reach out for collaborations, SOC roles, or security consulting.
+            </p>
+            <p className="text-[#A3B3D1]/80 text-[14px] leading-relaxed">
+              Provide your <strong className="text-white">Name</strong> and <strong className="text-white">Email Address</strong> for a prompt response.
+            </p>
+          </div>
 
-      <div className="absolute right-20 bottom-20 h-56 w-56 rounded-full border border-blue-100 opacity-20"></div>
+          {/* Cyan Glow Divider */}
+          <div className="w-full max-w-sm h-0.5 bg-[#00F0FF]/40 mb-6 shadow-[0_0_10px_rgba(0,240,255,0.3)]"></div>
 
-      {/* Card */}
+          <div className="flex flex-col items-start max-w-sm relative">
+            <p className="text-[#A3B3D1] text-xs uppercase font-semibold tracking-wider mb-4 w-full">Connect on Social Networks</p>
 
-      <div className="relative mx-auto max-w-4xl rounded-3xl border border-blue-200 bg-white px-12 py-16 text-center shadow-sm">
+            <div className="flex gap-4">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="Instagram">
+                <FaInstagram size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/akbarmrap/" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="LinkedIn">
+                <FaLinkedinIn size={20} />
+              </a>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
 
-        <h2 className="text-5xl font-bold text-[#5170FF]">
-          Let's Build Something.
-        </h2>
+      {/* Right Column (Navy Action Card) */}
+      <div className="flex-1 bg-[#161B33] border border-[#1E2545] rounded-2xl flex flex-col justify-center px-8 md:px-14 py-14 shadow-xl">
+        <ScrollReveal preset="fadeUp" delay={0.2}>
+          <h3 className="text-white text-2xl font-extrabold mb-8 tracking-tight">
+            Send Me A <span className="text-[#00F0FF]">Message</span>
+          </h3>
 
-        <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
-          Have a project in mind or simply want to connect?
-          I'm always open to discussing new opportunities,
-          freelance work, or collaborations.
-        </p>
+          <div className="flex flex-col gap-5 max-w-md">
+            <a
+              href="mailto:akbar.mulianda.rusdi@gmail.com"
+              className="w-full bg-[#00E5FF] hover:bg-[#00CBE6] text-black font-extrabold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(0,229,255,0.35)] text-sm tracking-wider uppercase hover:scale-[1.02]"
+            >
+              <FaEnvelope size={18} />
+              Email Me (akbar.mulianda.rusdi@gmail.com)
+            </a>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-5">
-
-          <a
-            href="mailto:your@email.com"
-            className="flex items-center gap-3 rounded-full bg-[#5170FF] px-7 py-4 font-semibold text-white transition hover:scale-105 hover:bg-[#4363ff]"
-          >
-            <HiOutlineMail size={22} />
-            Email Me
-          </a>
-
-          <a
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-full border border-[#5170FF] bg-white px-7 py-4 font-semibold text-[#5170FF] transition hover:scale-105 hover:bg-[#5170FF] hover:text-white"
-          >
-            <FaLinkedinIn size={20} />
-            LinkedIn
-          </a>
-
-        </div>
-
+            <a
+              href="https://www.linkedin.com/in/akbarmrap/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#1E2545] hover:bg-[#252D54] border border-[#00F0FF]/30 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-md hover:border-[#00F0FF] text-sm tracking-wide"
+            >
+              <FaLinkedinIn size={18} className="text-[#00F0FF]" />
+              Connect on LinkedIn
+            </a>
+          </div>
+        </ScrollReveal>
       </div>
 
     </section>
