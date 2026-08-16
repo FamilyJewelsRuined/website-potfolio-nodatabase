@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import ScrollReveal from "./ScrollReveal";
 
 export interface Certificate {
@@ -8,12 +8,31 @@ export interface Certificate {
   title: string;
   description: string;
   image_url?: string;
+  pdf_url?: string;
 }
 
 const defaultCertificates: Certificate[] = [
-  { id: 1, title: "Certificate 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-  { id: 2, title: "Certificate 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-  { id: 3, title: "Certificate 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+  {
+    id: 1,
+    title: "Cisco Cybersecurity",
+    description: "Certification verifying foundational knowledge in network security, cybersecurity principles, threat defense, and ethical hacking fundamentals provided by Cisco Networking Academy.",
+    image_url: "/certificates/cisco-cybersecurity.png",
+    pdf_url: "/certificates/cisco-cybersecurity.pdf"
+  },
+  {
+    id: 2,
+    title: "Front-End Programmer (PBL)",
+    description: "Competency certification in modern front-end web development, covering responsive UI architecture, JavaScript frameworks, and hands-on Project-Based Learning.",
+    image_url: "/certificates/FEProgrammerPBL.png",
+    pdf_url: "/certificates/FEProgrammerPBL.pdf"
+  },
+  {
+    id: 3,
+    title: "Junior Cybersecurity Specialist",
+    description: "Professional certification validating core skills in system vulnerability assessment, network defense operations, basic incident response, and security compliance.",
+    image_url: "/certificates/sertifikatjuniorcybersecurity.png",
+    pdf_url: "/certificates/sertifikatjuniorcybersecurity.pdf"
+  }
 ];
 
 export interface CertificationsProps {
@@ -21,25 +40,8 @@ export interface CertificationsProps {
 }
 
 export default function Certifications({ certificates = defaultCertificates }: CertificationsProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      const maxScrollLeft = scrollWidth - clientWidth;
-      setScrollProgress(maxScrollLeft > 0 ? scrollLeft / maxScrollLeft : 0);
-    }
-  };
-
-  useEffect(() => {
-    handleScroll();
-    window.addEventListener("resize", handleScroll);
-    return () => window.removeEventListener("resize", handleScroll);
-  }, []);
-
   return (
-    <div id="certifications" className="bg-[#0B0E1B] text-white min-h-[70vh] px-8 md:px-16 lg:px-24 py-20 font-sans flex items-center border-t border-[#1E2545]">
+    <div id="certifications" className="bg-[#0B0E1B] text-white min-h-[70vh] px-8 md:px-16 lg:px-24 py-20 font-sans flex items-center border-t border-[#1E2545] overflow-x-hidden">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
         
         {/* Left Column */}
@@ -56,45 +58,79 @@ export default function Certifications({ certificates = defaultCertificates }: C
           </ScrollReveal>
         </div>
 
-        {/* Right Column: Scrollable Cards */}
-        <div className="flex-1 w-full relative flex flex-col">
+        {/* Right Column: Scrollable Cards Container */}
+        <div className="flex-1 w-full min-w-0 relative flex flex-col">
           <style>{`
             .custom-scrollbar::-webkit-scrollbar {
               height: 6px;
+              width: 0px;
             }
             .custom-scrollbar::-webkit-scrollbar-track {
-              background: #0B0E1B;
+              background: #121629;
               border-radius: 3px;
+              border: 1px solid #1E2545;
             }
             .custom-scrollbar::-webkit-scrollbar-thumb {
               background: #00F0FF;
               border-radius: 3px;
+              box-shadow: 0 0 10px rgba(0,240,255,0.5);
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+              background: #38bdf8;
             }
           `}</style>
+
           <div 
-            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory custom-scrollbar"
+            className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory custom-scrollbar"
           >
             {certificates.map((cert, index) => (
               <ScrollReveal 
                 key={cert.id} 
                 preset="fadeUp" 
                 delay={0.1 + index * 0.1}
-                className="w-[280px] md:w-[340px] snap-center flex flex-col border border-[#1E2545] bg-[#121629] rounded-2xl overflow-hidden shrink-0 hover:border-[#00F0FF]/60 hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all duration-300"
+                className="w-[280px] md:w-[340px] snap-center flex flex-col border border-[#1E2545] bg-[#121629] rounded-2xl overflow-hidden shrink-0 hover:border-[#00F0FF]/60 hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all duration-300 group"
               >
-                {/* Image Placeholder */}
-                <div className="w-full aspect-video relative border-b border-[#1E2545] bg-[#0B0E1B] overflow-hidden">
+                {/* Image / Thumbnail */}
+                <a 
+                  href={cert.pdf_url ?? "#"} 
+                  target={cert.pdf_url ? "_blank" : "_self"} 
+                  rel="noopener noreferrer"
+                  className="w-full aspect-video relative border-b border-[#1E2545] bg-[#0B0E1B] overflow-hidden block"
+                >
                   {cert.image_url ? (
-                    <img src={cert.image_url} alt={cert.title} className="w-full h-full object-cover" />
+                    <img 
+                      src={cert.image_url} 
+                      alt={cert.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                    />
                   ) : (
-                    <img src="/tempimage.png" alt="Placeholder" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                    <img 
+                      src="/tempimage.png" 
+                      alt="Placeholder" 
+                      className="absolute inset-0 w-full h-full object-cover opacity-80" 
+                    />
                   )}
-                </div>
+                </a>
                 
-                <div className="p-5">
-                  <h3 className="text-[#00F0FF] font-bold text-lg md:text-xl mb-2">{cert.title}</h3>
-                  <p className="text-[#A3B3D1] text-[14px] leading-relaxed">
-                    {cert.description}
-                  </p>
+                <div className="p-5 flex flex-col flex-1 justify-between">
+                  <div>
+                    <h3 className="text-[#00F0FF] font-bold text-lg md:text-xl mb-2">{cert.title}</h3>
+                    <p className="text-[#A3B3D1] text-[14px] leading-relaxed mb-4">
+                      {cert.description}
+                    </p>
+                  </div>
+
+                  {cert.pdf_url && (
+                    <a
+                      href={cert.pdf_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00F0FF] hover:text-cyan-300 transition-colors mt-auto group/link"
+                    >
+                      View Certificate (PDF) 
+                      <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+                    </a>
+                  )}
                 </div>
               </ScrollReveal>
             ))}
