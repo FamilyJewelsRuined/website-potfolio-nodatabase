@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface Certificate {
   id: string | number;
@@ -40,6 +41,15 @@ export interface CertificationsProps {
 }
 
 export default function Certifications({ certificates = defaultCertificates }: CertificationsProps) {
+  const { t } = useLanguage();
+
+  const certList = certificates.map((cert) => {
+    if (cert.id === 1) return { ...cert, title: t("cert1Title"), description: t("cert1Desc") };
+    if (cert.id === 2) return { ...cert, title: t("cert2Title"), description: t("cert2Desc") };
+    if (cert.id === 3) return { ...cert, title: t("cert3Title"), description: t("cert3Desc") };
+    return cert;
+  });
+
   return (
     <div id="certifications" className="bg-[#0B0E1B] text-white min-h-[70vh] px-8 md:px-16 lg:px-24 py-20 font-sans flex items-center border-t border-[#1E2545] overflow-x-hidden">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
@@ -48,12 +58,12 @@ export default function Certifications({ certificates = defaultCertificates }: C
         <div className="flex-1 max-w-lg lg:max-w-md w-full">
           <ScrollReveal preset="fadeUp">
             <h2 className="text-white text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight mb-6">
-              Certifications & <span className="text-[#00F0FF]">Badges</span>
+              {t("certificationsTitle")} <span className="text-[#00F0FF]">{t("certificationsBadgeTitle")}</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal preset="fadeUp" delay={0.1}>
             <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed">
-              Verified security credentials, SOC analyst certifications, and technical badges demonstrating hands-on expertise in threat detection, incident response, and secure software development.
+              {t("certificationsDesc")}
             </p>
           </ScrollReveal>
         </div>
@@ -83,7 +93,7 @@ export default function Certifications({ certificates = defaultCertificates }: C
           <div 
             className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory custom-scrollbar"
           >
-            {certificates.map((cert, index) => (
+            {certList.map((cert, index) => (
               <ScrollReveal 
                 key={cert.id} 
                 preset="fadeUp" 
@@ -127,7 +137,7 @@ export default function Certifications({ certificates = defaultCertificates }: C
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00F0FF] hover:text-cyan-300 transition-colors mt-auto group/link"
                     >
-                      View Certificate (PDF) 
+                      {t("viewCertPdf")}{" "}
                       <span className="group-hover/link:translate-x-1 transition-transform">→</span>
                     </a>
                   )}

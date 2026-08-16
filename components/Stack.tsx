@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "@/context/LanguageContext";
 import { IconType } from "react-icons";
 import { 
   FaReact, FaNodeJs, FaPython, FaPhp, FaLaravel, FaGitAlt, 
@@ -87,6 +88,16 @@ export interface StackProps {
 }
 
 export default function Stack({ skills = defaultSkills }: StackProps) {
+  const { t } = useLanguage();
+
+  const skillList = skills.map((skill) => {
+    if (skill.id === 1) return { ...skill, title: t("skillWebTitle"), description: t("skillWebDesc") };
+    if (skill.id === 2) return { ...skill, title: t("skillCyberTitle"), description: t("skillCyberDesc") };
+    if (skill.id === 3) return { ...skill, title: t("skillTechTitle"), description: t("skillTechDesc") };
+    if (skill.id === 4) return { ...skill, title: t("skillNetTitle"), description: t("skillNetDesc") };
+    return skill;
+  });
+
   return (
     <section id="skills" className="bg-[#0B0E1B] text-white px-8 md:px-16 lg:px-24 py-20 font-sans border-t border-[#1E2545]">
       <div className="max-w-7xl mx-auto w-full flex flex-col">
@@ -94,7 +105,7 @@ export default function Stack({ skills = defaultSkills }: StackProps) {
         {/* Heading */}
         <ScrollReveal preset="fadeUp" className="mb-10">
           <h2 className="text-white text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight">
-            Technical <span className="text-[#00F0FF]">Skills</span> & Capabilities
+            {t("skillsHeadingTitle")} <span className="text-[#00F0FF]">{t("skillsHeadingSubtitle")}</span> {t("skillsHeadingSuffix")}
           </h2>
         </ScrollReveal>
 
@@ -121,7 +132,7 @@ export default function Stack({ skills = defaultSkills }: StackProps) {
           <div 
             className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory custom-scrollbar"
           >
-            {skills.map((skill, index) => (
+            {skillList.map((skill, index) => (
               <ScrollReveal
                 key={skill.id}
                 preset="fadeUp"

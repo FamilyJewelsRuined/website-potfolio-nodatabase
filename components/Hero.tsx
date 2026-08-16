@@ -6,6 +6,8 @@ import akbarImage from '../app/assets/akbar.png';
 import Link from "next/link";
 import { FaArrowRight, FaShieldAlt } from "react-icons/fa";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageToggle from "./LanguageToggle";
 
 const PlaceholderImage = () => (
   <div className="relative w-full h-full min-h-[450px] flex items-center justify-center bg-[#121629] border border-[#1E2545] rounded-2xl overflow-hidden">
@@ -15,6 +17,7 @@ const PlaceholderImage = () => (
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useLanguage();
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % 3);
@@ -28,6 +31,11 @@ const Hero: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-[#0B0E1B] overflow-hidden flex flex-col md:flex-row text-white font-sans">
+
+      {/* Mobile Language Switcher */}
+      <div className="fixed top-4 right-4 z-50 md:hidden">
+        <LanguageToggle />
+      </div>
 
       {/* Background Ambient Glows */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-3xl pointer-events-none" />
@@ -50,18 +58,21 @@ const Hero: React.FC = () => {
         </div>
 
         <nav className="flex space-x-8 font-semibold text-[14px] tracking-wide text-[#A3B3D1]">
-          <Link href="/#projects" className="hover:text-[#00F0FF] transition-colors">Featured Projects</Link>
-          <Link href="/#skills" className="hover:text-[#00F0FF] transition-colors">Skills</Link>
-          <Link href="/#certifications" className="hover:text-[#00F0FF] transition-colors">Certifications</Link>
-          <Link href="/#contact" className="hover:text-[#00F0FF] transition-colors">Contact</Link>
+          <Link href="/#projects" className="hover:text-[#00F0FF] transition-colors">{t("navProjects")}</Link>
+          <Link href="/#skills" className="hover:text-[#00F0FF] transition-colors">{t("navSkills")}</Link>
+          <Link href="/#certifications" className="hover:text-[#00F0FF] transition-colors">{t("navCertifications")}</Link>
+          <Link href="/#contact" className="hover:text-[#00F0FF] transition-colors">{t("navContact")}</Link>
         </nav>
 
-        <a
-          href="#contact"
-          className="bg-[#00E5FF] hover:bg-[#00CBE6] text-black font-bold px-4 py-2 rounded-xl shadow-[0_0_15px_rgba(0,229,255,0.35)] text-xs uppercase tracking-wider transition-all hover:scale-105"
-        >
-          Hire Me
-        </a>
+        <div className="flex items-center space-x-4">
+          <LanguageToggle />
+          <a
+            href="#contact"
+            className="bg-[#00E5FF] hover:bg-[#00CBE6] text-black font-bold px-4 py-2 rounded-xl shadow-[0_0_15px_rgba(0,229,255,0.35)] text-xs uppercase tracking-wider transition-all hover:scale-105"
+          >
+            {t("hireMe")}
+          </a>
+        </div>
       </div>
 
       {/* Left Panel */}
@@ -78,13 +89,13 @@ const Hero: React.FC = () => {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/30 text-[#00F0FF] text-xs font-bold tracking-wider uppercase mb-6 shadow-[0_0_10px_rgba(0,240,255,0.15)]">
                 <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
-                Cybersecurity & Full-Stack
+                {t("heroBadge")}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-6 leading-[1.15] tracking-tight text-white">
                 Akbar Mulianda <span className="text-[#00F0FF]">Rusdy</span>
               </h1>
               <p className="text-[#A3B3D1] text-lg md:text-xl font-normal leading-relaxed">
-                Full-stack dev with a foundation in systems technician and an active focus on cybersecurity.
+                {t("heroSubtitle")}
               </p>
             </motion.div>
           )}
@@ -110,11 +121,11 @@ const Hero: React.FC = () => {
               className="max-w-lg px-8 py-12 md:px-16 lg:px-24 w-full"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/30 text-[#00F0FF] text-xs font-bold tracking-wider uppercase mb-4">
-                Personal Drive
+                {t("hobbiesBadge")}
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-5 tracking-tight text-white">Hobbies</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-5 tracking-tight text-white">{t("hobbiesTitle")}</h2>
               <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed font-normal">
-                Dedicated to minimizing total cost of ownership and maximizing budget efficiency. Driven to eliminate operational friction through continuous process improvement. Early adopter of emerging tech stacks to maintain competitive advantage. Focused on automating routine tasks to accelerate delivery and reduce manual effort. Passionate about deep-diving into complex, niche domains to uncover unique solutions.
+                {t("hobbiesDesc")}
               </p>
             </motion.div>
           )}
@@ -156,12 +167,12 @@ const Hero: React.FC = () => {
               className="max-w-lg px-8 py-12 md:px-16 lg:px-24 w-full text-right"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/30 text-[#00F0FF] text-xs font-bold tracking-wider uppercase mb-4">
-                Overview
+                {t("aboutBadge")}
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-8 tracking-tight text-white">About</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-8 tracking-tight text-white">{t("aboutTitle")}</h2>
               <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed text-justify font-normal">
-                Hi, I’m Akbar Mulianda Rusdy, an Informatics graduate from Politeknik Negeri Banjarmasin focusing on cybersecurity, networking, and IT technical support. <br></br><br></br>
-                Besides network infrastructure, I build full-stack web applications using modern AI tooling like Claude Code and Gemini CLI to streamline the development cycle. I enjoy being an early adopter of new tech and integrating it directly into my workflow. My priority is writing clean, functional systems that are easy to maintain and update later on.
+                {t("aboutP1")} <br></br><br></br>
+                {t("aboutP2")}
               </p>
             </motion.div>
           )}

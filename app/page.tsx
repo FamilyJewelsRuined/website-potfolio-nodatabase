@@ -4,7 +4,7 @@ import Hero from '@/components/Hero'
 import Stack from '@/components/Stack'
 import Profile from '@/components/Profile'
 import ProjectGrid from "@/components/ProjectGrid";
-import ScrollReveal from "@/components/ScrollReveal";
+import ProjectsHeader from "@/components/ProjectsHeader";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 
@@ -28,18 +28,7 @@ export default async function Page() {
 
       
       <main id="projects" className="bg-[#0B0E1B] text-white min-h-screen px-8 md:px-16 lg:px-24 py-16 font-sans border-t border-[#1E2545]">
-        <div className="max-w-7xl mx-auto flex justify-between items-end mb-10 border-b border-[#1E2545] pb-4">
-          <ScrollReveal preset="fadeUp">
-            <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Featured <span className="text-[#00F0FF]">Projects</span>
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal preset="fadeUp" delay={0.1}>
-            <a href="#" className="text-[#00F0FF] hover:text-cyan-300 text-sm md:text-[15px] font-bold transition-colors pb-1 flex items-center gap-1">
-              See More Projects →
-            </a>
-          </ScrollReveal>
-        </div>
+        <ProjectsHeader />
       
       {error && (
         <div style={{ color: '#ef4444', padding: '1rem', border: '1px solid #ef4444', borderRadius: '8px', marginBottom: '2rem' }}>
