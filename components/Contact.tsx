@@ -1,7 +1,7 @@
 "use client";
 
 import ScrollReveal from "./ScrollReveal";
-import { FaLinkedinIn, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaLinkedinIn, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
   return (
@@ -30,8 +30,11 @@ export default function Contact() {
             <p className="text-[#A3B3D1] text-xs uppercase font-semibold tracking-wider mb-4 w-full">Connect on Social Networks</p>
 
             <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="Instagram">
+              <a href="https://instagram.com/thestrange_mrrusdi" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="Instagram">
                 <FaInstagram size={20} />
+              </a>
+              <a href="https://github.com/FamilyJewelsRuined" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="GitHub">
+                <FaGithub size={20} />
               </a>
               <a href="https://www.linkedin.com/in/akbarmrap/" target="_blank" rel="noopener noreferrer" className="bg-[#1E2545] border border-[#252D54] text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black w-11 h-11 flex items-center justify-center rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.15)]" aria-label="LinkedIn">
                 <FaLinkedinIn size={20} />

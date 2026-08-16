@@ -11,22 +11,22 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    href: "https://linkedin.com/in/yourprofile",
+    href: "https://www.linkedin.com/in/akbarmrap/",
     label: "LinkedIn",
     icon: <FiLinkedin className="w-5 h-5" />,
   },
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/FamilyJewelsRuined",
     label: "GitHub",
     icon: <FiGithub className="w-5 h-5" />,
   },
   {
-    href: "mailto:your.email@example.com",
+    href: "mailto:akbar.mulianda.rusdi@gmail.com",
     label: "Email",
     icon: <FiMail className="w-5 h-5" />,
   },
   {
-    href: "https://instagram.com/yourusername",
+    href: "https://instagram.com/thestrange_mrrusdi",
     label: "Instagram",
     icon: <FiInstagram className="w-5 h-5" />,
   },
