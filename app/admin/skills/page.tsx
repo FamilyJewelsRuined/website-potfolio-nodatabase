@@ -68,7 +68,7 @@ export default function AdminSkillsPage() {
   const handleEdit = (skill: Skill) => {
     setEditingId(skill.id);
     setTitle(skill.title);
-    setDescription(skill.description);
+    setDescription(skill.description || '');
     setImageUrl(skill.image_url || '');
   };
 

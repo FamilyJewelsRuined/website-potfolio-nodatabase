@@ -50,10 +50,10 @@ const Hero: React.FC = () => {
         </div>
 
         <nav className="flex space-x-8 font-semibold text-[14px] tracking-wide text-[#A3B3D1]">
-          <Link href="#projects" className="hover:text-[#00F0FF] transition-colors">Featured Projects</Link>
-          <Link href="#skills" className="hover:text-[#00F0FF] transition-colors">Skills</Link>
-          <Link href="#certifications" className="hover:text-[#00F0FF] transition-colors">Certifications</Link>
-          <Link href="#contact" className="hover:text-[#00F0FF] transition-colors">Contact</Link>
+          <Link href="/#projects" className="hover:text-[#00F0FF] transition-colors">Featured Projects</Link>
+          <Link href="/#skills" className="hover:text-[#00F0FF] transition-colors">Skills</Link>
+          <Link href="/#certifications" className="hover:text-[#00F0FF] transition-colors">Certifications</Link>
+          <Link href="/#contact" className="hover:text-[#00F0FF] transition-colors">Contact</Link>
         </nav>
 
         <a
@@ -159,8 +159,9 @@ const Hero: React.FC = () => {
                 Overview
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold mb-8 tracking-tight text-white">About</h2>
-              <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed text-right font-normal">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <p className="text-[#A3B3D1] text-[15px] md:text-[16px] leading-relaxed text-justify font-normal">
+                Hi, I’m Akbar Mulianda Rusdy, an Informatics graduate from Politeknik Negeri Banjarmasin focusing on cybersecurity, networking, and IT technical support. <br></br><br></br>
+                Besides network infrastructure, I build full-stack web applications using modern AI tooling like Claude Code and Gemini CLI to streamline the development cycle. I enjoy being an early adopter of new tech and integrating it directly into my workflow. My priority is writing clean, functional systems that are easy to maintain and update later on.
               </p>
             </motion.div>
           )}
