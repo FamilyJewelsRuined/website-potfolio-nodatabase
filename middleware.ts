@@ -1,10 +1,11 @@
-import { withMiniSIEM } from "microgaze";
+import { type NextRequest, NextResponse } from "next/server";
 
-export default withMiniSIEM({
-  apiKey: process.env.MINI_SIEM_API_KEY!,
-  siemUrl: process.env.MINI_SIEM_URL!,
-});
+export function middleware(request: NextRequest) {
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };

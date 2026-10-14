@@ -29,7 +29,15 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
           {/* Image Container */}
           <div className="w-full aspect-video relative border border-[#1E2545] rounded-xl mb-4 bg-[#0B0E1B] overflow-hidden group-hover:border-[#00F0FF]/40 transition-colors">
             {project.thumbnail_url ? (
-               <img src={project.thumbnail_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+               <img 
+                 src={project.thumbnail_url} 
+                 alt={project.title} 
+                 onError={(e) => {
+                   e.currentTarget.onerror = null;
+                   e.currentTarget.src = "/tempimage.png";
+                 }}
+                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+               />
             ) : (
                <img src="/tempimage.png" alt="Placeholder" className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
             )}
